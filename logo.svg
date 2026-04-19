@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Front Porch Radio">
+  <title>Front Porch Radio</title>
+
+  <defs>
+    <!-- Gold badge gradient -->
+    <radialGradient id="goldRad" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#f7d774"/>
+      <stop offset="55%" stop-color="#e6b64a"/>
+      <stop offset="100%" stop-color="#c68a22"/>
+    </radialGradient>
+
+    <!-- Sky gradient -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#fff5de"/>
+      <stop offset="60%" stop-color="#ffe6ad"/>
+      <stop offset="100%" stop-color="#f6c97a"/>
+    </linearGradient>
+
+    <!-- Field stripes (alternating green / gold) -->
+    <linearGradient id="fieldGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#5a8a43"/>
+      <stop offset="100%" stop-color="#2f5a2a"/>
+    </linearGradient>
+    <linearGradient id="fieldGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#e5b659"/>
+      <stop offset="100%" stop-color="#b77a2a"/>
+    </linearGradient>
+
+    <!-- Chrome microphone gradient -->
+    <linearGradient id="chromeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#f5f5f7"/>
+      <stop offset="40%" stop-color="#c8ccd2"/>
+      <stop offset="75%" stop-color="#7e848c"/>
+      <stop offset="100%" stop-color="#4a4e54"/>
+    </linearGradient>
+    <radialGradient id="micBall" cx="40%" cy="35%" r="65%">
+      <stop offset="0%"  stop-color="#fafbfd"/>
+      <stop offset="45%" stop-color="#c9ced5"/>
+      <stop offset="100%" stop-color="#5a5f66"/>
+    </radialGradient>
+
+    <!-- Banner gradients -->
+    <linearGradient id="greenBanner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#3a5a3a"/>
+      <stop offset="100%" stop-color="#253c25"/>
+    </linearGradient>
+    <linearGradient id="brownBanner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#7a5230"/>
+      <stop offset="100%" stop-color="#4d3319"/>
+    </linearGradient>
+
+    <!-- Oval clip for farm scene -->
+    <clipPath id="ovalClip">
+      <ellipse cx="512" cy="500" rx="330" ry="220"/>
+    </clipPath>
+
+    <!-- Shadow filter -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="6" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ============ SHIELD / BADGE ============ -->
+  <!-- outer dark trim -->
+  <path d="M 512 60
+           C 740 60 900 120 940 180
+           L 940 620
+           C 940 780 780 920 512 980
+           C 244 920 84 780 84 620
+           L 84 180
+           C 124 120 284 60 512 60 Z"
+        fill="#1f2a1f"/>
+  <!-- gold face (inset) -->
+  <path d="M 512 92
+           C 724 92 874 148 912 202
+           L 912 616
+           C 912 764 760 890 512 946
+           C 264 890 112 764 112 616
+           L 112 202
+           C 150 148 300 92 512 92 Z"
+        fill="url(#goldRad)"/>
+  <!-- inner gold highlight ring -->
+  <path d="M 512 118
+           C 712 118 852 170 888 220
+           L 888 612
+           C 888 748 746 866 512 920
+           C 278 866 136 748 136 612
+           L 136 220
+           C 172 170 312 118 512 118 Z"
+        fill="none" stroke="#a4701b" stroke-width="3" opacity="0.55"/>
+
+  <!-- ============ TOP GREEN BANNER "FRONT PORCH" ============ -->
+  <g filter="url(#dropShadow)">
+    <!-- Banner shape with ribbon tails -->
+    <path d="M 152 170
+             L 872 170
+             L 900 210
+             L 872 268
+             L 152 268
+             L 124 210 Z"
+          fill="url(#greenBanner)"/>
+    <!-- Left tail fold -->
+    <path d="M 152 268 L 124 210 L 112 232 L 140 296 Z" fill="#1a2b1a"/>
+    <!-- Right tail fold -->
+    <path d="M 872 268 L 900 210 L 912 232 L 884 296 Z" fill="#1a2b1a"/>
+    <!-- Inner highlight line -->
+    <path d="M 170 186 L 854 186" stroke="#6a8a62" stroke-width="2" opacity="0.55"/>
+    <path d="M 170 252 L 854 252" stroke="#6a8a62" stroke-width="2" opacity="0.35"/>
+  </g>
+  <!-- Banner text -->
+  <text x="512" y="244"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700"
+        font-size="72"
+        letter-spacing="6"
+        textLength="660"
+        lengthAdjust="spacingAndGlyphs"
+        fill="#f4ebdc">FRONT PORCH</text>
+
+  <!-- ============ OVAL FARM SCENE ============ -->
+  <!-- Oval cream backdrop -->
+  <ellipse cx="512" cy="500" rx="334" ry="224" fill="#1f2a1f"/>
+  <ellipse cx="512" cy="500" rx="326" ry="216" fill="url(#skyGrad)"/>
+
+  <g clip-path="url(#ovalClip)">
+    <!-- Sun -->
+    <g transform="translate(720 430)">
+      <circle r="48" fill="#fff2b3"/>
+      <circle r="36" fill="#ffe57a"/>
+      <!-- Rays -->
+      <g stroke="#ffd24a" stroke-width="5" stroke-linecap="round">
+        <line x1="0" y1="-70" x2="0" y2="-92"/>
+        <line x1="0" y1="70"  x2="0" y2="92"/>
+        <line x1="-70" y1="0" x2="-92" y2="0"/>
+        <line x1="70"  y1="0" x2="92"  y2="0"/>
+        <line x1="-50" y1="-50" x2="-66" y2="-66"/>
+        <line x1="50"  y1="-50" x2="66"  y2="-66"/>
+        <line x1="-50" y1="50"  x2="-66" y2="66"/>
+        <line x1="50"  y1="50"  x2="66"  y2="66"/>
+      </g>
+    </g>
+
+    <!-- Distant horizon line -->
+    <path d="M 180 470 Q 512 450 844 470 L 844 724 L 180 724 Z" fill="#a8c98a" opacity="0.5"/>
+
+    <!-- Rolling green field -->
+    <path d="M 180 500
+             C 320 470 440 495 560 492
+             C 680 488 780 510 844 500
+             L 844 560
+             L 180 560 Z"
+          fill="url(#fieldGreen)"/>
+
+    <!-- Gold field stripe -->
+    <path d="M 180 560
+             C 300 545 460 568 600 560
+             C 720 553 800 572 844 562
+             L 844 612
+             L 180 612 Z"
+          fill="url(#fieldGold)"/>
+
+    <!-- Second green stripe -->
+    <path d="M 180 612
+             C 280 600 420 626 560 620
+             C 700 614 800 630 844 620
+             L 844 668
+             L 180 668 Z"
+          fill="url(#fieldGreen)"/>
+
+    <!-- Foreground gold stripe -->
+    <path d="M 180 668
+             C 320 660 480 682 620 676
+             C 740 671 820 684 844 676
+             L 844 724
+             L 180 724 Z"
+          fill="url(#fieldGold)"/>
+
+    <!-- Row texture lines on gold -->
+    <g stroke="#8a5a1a" stroke-width="1.2" opacity="0.45">
+      <path d="M 200 580 Q 512 572 820 582" fill="none"/>
+      <path d="M 200 596 Q 512 588 820 598" fill="none"/>
+      <path d="M 200 688 Q 512 680 820 692" fill="none"/>
+      <path d="M 200 704 Q 512 696 820 708" fill="none"/>
+    </g>
+
+    <!-- Trees cluster left -->
+    <g transform="translate(230 420)">
+      <ellipse cx="0"   cy="30" rx="26" ry="36" fill="#2a4a26"/>
+      <ellipse cx="30"  cy="20" rx="32" ry="44" fill="#345a30"/>
+      <ellipse cx="-24" cy="28" rx="22" ry="32" fill="#253f22"/>
+      <rect x="-4" y="60" width="8" height="18" fill="#3a2a16"/>
+    </g>
+
+    <!-- Barn -->
+    <g transform="translate(290 430)">
+      <!-- Roof -->
+      <polygon points="-8,0 96,0 104,-18 -16,-18" fill="#3a1a10"/>
+      <!-- Body -->
+      <rect x="-8" y="0" width="104" height="80" fill="#b23a2a"/>
+      <!-- Side shading -->
+      <rect x="88" y="0" width="8" height="80" fill="#8c2a1e"/>
+      <!-- White X trim on door -->
+      <rect x="28" y="28" width="32" height="42" fill="#f4ebdc"/>
+      <line x1="28" y1="28" x2="60" y2="70" stroke="#b23a2a" stroke-width="2"/>
+      <line x1="60" y1="28" x2="28" y2="70" stroke="#b23a2a" stroke-width="2"/>
+      <!-- Hay loft window -->
+      <rect x="38" y="6" width="14" height="14" fill="#f4ebdc"/>
+      <!-- Board lines -->
+      <g stroke="#8c2a1e" stroke-width="0.8" opacity="0.7">
+        <line x1="-8" y1="14" x2="96" y2="14"/>
+        <line x1="-8" y1="42" x2="96" y2="42"/>
+      </g>
+    </g>
+
+    <!-- Silo -->
+    <g transform="translate(390 420)">
+      <!-- Conical top -->
+      <polygon points="0,0 22,0 11,-20" fill="#4a4a4a"/>
+      <!-- Cylinder body -->
+      <rect x="0" y="0" width="22" height="90" fill="#e8e2d4"/>
+      <rect x="18" y="0" width="4" height="90" fill="#b8ae9a"/>
+      <!-- Bands -->
+      <g stroke="#9a9080" stroke-width="0.8" opacity="0.7">
+        <line x1="0" y1="22" x2="22" y2="22"/>
+        <line x1="0" y1="44" x2="22" y2="44"/>
+        <line x1="0" y1="66" x2="22" y2="66"/>
+      </g>
+    </g>
+
+    <!-- Small right-side tree -->
+    <g transform="translate(640 476)">
+      <ellipse cx="0" cy="10" rx="18" ry="26" fill="#2d4d28"/>
+      <rect x="-2" y="30" width="4" height="10" fill="#3a2a16"/>
+    </g>
+
+    <!-- Clouds / wispy streaks in sky -->
+    <g fill="#fff" opacity="0.55">
+      <ellipse cx="300" cy="360" rx="48" ry="8"/>
+      <ellipse cx="560" cy="340" rx="66" ry="7"/>
+    </g>
+  </g>
+
+  <!-- Oval rim -->
+  <ellipse cx="512" cy="500" rx="326" ry="216" fill="none" stroke="#4a3319" stroke-width="4"/>
+  <ellipse cx="512" cy="500" rx="334" ry="224" fill="none" stroke="#a4701b" stroke-width="2" opacity="0.6"/>
+
+  <!-- ============ MICROPHONE (center foreground) ============ -->
+  <g transform="translate(512 590)" filter="url(#dropShadow)">
+    <!-- Sound waves LEFT -->
+    <g fill="none" stroke="#6b4a2b" stroke-width="6" stroke-linecap="round" opacity="0.9">
+      <path d="M -120 -20 Q -146 -4 -120 30"/>
+      <path d="M -150 -34 Q -186 -2 -150 46"/>
+      <path d="M -180 -48 Q -226 0 -180 62"/>
+    </g>
+    <!-- Sound waves RIGHT -->
+    <g fill="none" stroke="#6b4a2b" stroke-width="6" stroke-linecap="round" opacity="0.9">
+      <path d="M 120 -20 Q 146 -4 120 30"/>
+      <path d="M 150 -34 Q 186 -2 150 46"/>
+      <path d="M 180 -48 Q 226 0 180 62"/>
+    </g>
+
+    <!-- U-bracket yoke -->
+    <path d="M -70 40
+             Q -70 110 0 110
+             Q 70 110 70 40"
+          fill="none" stroke="url(#chromeGrad)" stroke-width="10" stroke-linecap="round"/>
+    <!-- Stand base -->
+    <rect x="-6" y="108" width="12" height="40" fill="url(#chromeGrad)"/>
+    <ellipse cx="0" cy="150" rx="30" ry="6" fill="#3a3e44"/>
+
+    <!-- Mic ball (cage) -->
+    <circle cx="0" cy="0" r="78" fill="url(#micBall)" stroke="#3a3e44" stroke-width="3"/>
+    <!-- Horizontal grille bars -->
+    <g stroke="#3a3e44" stroke-width="2.2" opacity="0.9">
+      <line x1="-72" y1="-40" x2="72" y2="-40"/>
+      <line x1="-76" y1="-20" x2="76" y2="-20"/>
+      <line x1="-78" y1="0"   x2="78" y2="0"/>
+      <line x1="-76" y1="20"  x2="76" y2="20"/>
+      <line x1="-72" y1="40"  x2="72" y2="40"/>
+    </g>
+    <!-- Vertical bars -->
+    <g stroke="#3a3e44" stroke-width="1.6" opacity="0.6">
+      <line x1="-40" y1="-66" x2="-40" y2="66"/>
+      <line x1="-20" y1="-74" x2="-20" y2="74"/>
+      <line x1="0"   y1="-78" x2="0"   y2="78"/>
+      <line x1="20"  y1="-74" x2="20"  y2="74"/>
+      <line x1="40"  y1="-66" x2="40"  y2="66"/>
+    </g>
+    <!-- Shine highlight -->
+    <ellipse cx="-24" cy="-32" rx="22" ry="12" fill="#ffffff" opacity="0.55"/>
+
+    <!-- Mic body/neck -->
+    <rect x="-22" y="62" width="44" height="34" rx="6" fill="url(#chromeGrad)" stroke="#3a3e44" stroke-width="2"/>
+    <line x1="-16" y1="72" x2="16" y2="72" stroke="#3a3e44" stroke-width="1.5" opacity="0.6"/>
+    <line x1="-16" y1="82" x2="16" y2="82" stroke="#3a3e44" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- ============ CURSIVE "Radio" SCRIPT ============ -->
+  <g transform="translate(512 728)">
+    <text x="0" y="0"
+          text-anchor="middle"
+          font-family="'Brush Script MT', 'Lucida Handwriting', cursive"
+          font-size="92"
+          font-style="italic"
+          font-weight="700"
+          fill="#f7d774"
+          stroke="#5a3a12"
+          stroke-width="2"
+          paint-order="stroke fill">Radio</text>
+  </g>
+
+  <!-- ============ BOTTOM BROWN RIBBON ============ -->
+  <g filter="url(#dropShadow)">
+    <path d="M 140 790
+             L 884 790
+             L 912 830
+             L 884 884
+             L 140 884
+             L 112 830 Z"
+          fill="url(#brownBanner)"/>
+    <!-- Tails -->
+    <path d="M 140 884 L 112 830 L 98 854 L 128 912 Z" fill="#3a2410"/>
+    <path d="M 884 884 L 912 830 L 926 854 L 896 912 Z" fill="#3a2410"/>
+    <!-- Inner highlight -->
+    <path d="M 158 806 L 866 806" stroke="#a47442" stroke-width="2" opacity="0.55"/>
+    <path d="M 158 868 L 866 868" stroke="#a47442" stroke-width="2" opacity="0.35"/>
+  </g>
+  <text x="512" y="858"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700"
+        font-size="40"
+        letter-spacing="2"
+        textLength="680"
+        lengthAdjust="spacingAndGlyphs"
+        fill="#f4ebdc">FRONTPORCHRADIOFM.COM</text>
+
+</svg>
