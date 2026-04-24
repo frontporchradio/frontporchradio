@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Front Porch Radio — Redesign</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#f5f0e8;--warm:#fdf8f0;
+  --brown:#2c1a0e;--brown2:#4a2e1a;--brown3:#7a4f2e;
+  --amber:#c8852a;--amber2:#e6a040;--amber3:#f5c870;
+  --rust:#8b3a1a;--rust2:#b85025;
+  --muted:#8a7060;--border:#d4c5a9;--border2:#e8dcc8;
+  --text:#2c1a0e;
+  --serif:'Playfair Display','Georgia',serif;
+  --body:'Lora','Georgia',serif;
+}
+body{background:var(--cream);color:var(--text);font-family:var(--body);overflow-x:hidden}
+
+nav{
+  background:var(--brown);padding:1rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.logo{display:flex;align-items:center;gap:.8rem;color:var(--amber3);font-family:var(--serif);font-size:1.05rem;letter-spacing:.5px}
+.logo-icon{width:32px;height:32px;border:1.5px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:rgba(245,200,112,.6);text-decoration:none;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;font-family:var(--body)}
+nav a:hover{color:var(--amber3)}
+.live-badge{
+  display:flex;align-items:center;gap:.5rem;background:var(--rust);
+  padding:.4rem 1rem;border-radius:2px;font-size:.65rem;
+  letter-spacing:.15em;text-transform:uppercase;color:#fff;font-family:var(--body);
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+.hero{
+  background:var(--brown);
+  display:grid;grid-template-columns:1fr 1fr;min-height:78vh;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%, rgba(200,133,42,.08) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-left{
+  padding:5rem 3rem;display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid rgba(200,133,42,.15);z-index:1;
+}
+.eyebrow{
+  font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;font-family:var(--body);
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--amber);opacity:.5}
+h1{
+  font-family:var(--serif);font-size:3.5rem;font-weight:400;
+  line-height:1.1;color:var(--cream);margin-bottom:1rem;letter-spacing:-.5px;
+}
+h1 em{font-style:italic;color:var(--amber2)}
+.hero-sub{
+  font-size:.88rem;color:rgba(245,240,232,.6);line-height:1.9;
+  max-width:380px;margin-bottom:2.5rem;font-family:var(--body);
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  background:var(--amber);color:var(--brown);padding:.7rem 1.8rem;
+  border-radius:2px;font-weight:700;font-size:.72rem;cursor:pointer;border:none;
+  letter-spacing:.1em;text-transform:uppercase;transition:all .2s;font-family:var(--body);
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{background:var(--amber3);transform:translateY(-1px)}
+.btn-secondary{
+  background:transparent;color:rgba(245,240,232,.7);padding:.7rem 1.8rem;
+  border:1px solid rgba(200,133,42,.3);border-radius:2px;font-size:.72rem;
+  cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;font-family:var(--body);
+}
+.btn-secondary:hover{border-color:var(--amber);color:var(--amber3)}
+
+.hero-right{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:3rem;gap:2rem;z-index:1;
+}
+.vinyl{
+  width:220px;height:220px;border-radius:50%;
+  background:conic-gradient(from 0deg, #1a0f07 0deg 10deg, #251408 10deg 20deg, #1a0f07 20deg 30deg, #251408 30deg 40deg, #1a0f07 40deg 50deg, #251408 50deg 60deg, #1a0f07 60deg 70deg, #251408 70deg 80deg, #1a0f07 80deg 90deg, #251408 90deg 100deg, #1a0f07 100deg 110deg, #251408 110deg 120deg, #1a0f07 120deg 130deg, #251408 130deg 140deg, #1a0f07 140deg 150deg, #251408 150deg 160deg, #1a0f07 160deg 170deg, #251408 170deg 180deg, #1a0f07 180deg 190deg, #251408 190deg 200deg, #1a0f07 200deg 210deg, #251408 210deg 220deg, #1a0f07 220deg 230deg, #251408 230deg 240deg, #1a0f07 240deg 250deg, #251408 250deg 260deg, #1a0f07 260deg 270deg, #251408 270deg 280deg, #1a0f07 280deg 290deg, #251408 290deg 300deg, #1a0f07 300deg 310deg, #251408 310deg 320deg, #1a0f07 320deg 330deg, #251408 330deg 340deg, #1a0f07 340deg 350deg, #251408 350deg 360deg);
+  position:relative;animation:spin 4s linear infinite;box-shadow:0 0 40px rgba(200,133,42,.15);
+}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.vinyl::after{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle, var(--amber) 0%, var(--brown2) 40%, var(--brown) 60%);
+  box-shadow:0 0 0 3px rgba(200,133,42,.2);
+}
+.now-playing{
+  background:rgba(200,133,42,.1);border:1px solid rgba(200,133,42,.25);
+  border-radius:4px;padding:1.2rem 1.8rem;text-align:center;width:100%;max-width:280px;
+}
+.np-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem;font-family:var(--body)}
+.np-song{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--cream);margin-bottom:.2rem}
+.np-artist{font-size:.75rem;color:rgba(245,240,232,.5);letter-spacing:.05em;font-family:var(--body)}
+.waveform{display:flex;align-items:center;justify-content:center;gap:3px;margin-top:.8rem;height:20px}
+.wave-bar{width:3px;border-radius:2px;background:var(--amber);animation:wave 1s ease-in-out infinite}
+.wave-bar:nth-child(1){height:8px;animation-delay:.0s}
+.wave-bar:nth-child(2){height:16px;animation-delay:.1s}
+.wave-bar:nth-child(3){height:12px;animation-delay:.2s}
+.wave-bar:nth-child(4){height:20px;animation-delay:.15s}
+.wave-bar:nth-child(5){height:10px;animation-delay:.25s}
+.wave-bar:nth-child(6){height:16px;animation-delay:.05s}
+.wave-bar:nth-child(7){height:7px;animation-delay:.2s}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4)}}
+
+.tagline-band{
+  background:var(--amber);padding:.6rem 2.5rem;
+  font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--brown);
+  overflow:hidden;
+}
+.tagline-scroll{
+  display:flex;gap:4rem;white-space:nowrap;
+  animation:scroll 22s linear infinite;
+}
+.tag-item::before{content:'✦ ';opacity:.5}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.section{padding:4rem 2.5rem;border-top:1px solid var(--border2)}
+.section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.5rem}
+.section-eyebrow{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-family:var(--body)}
+.section-rule{flex:1;height:1px;background:var(--border2)}
+
+.shows-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.show-card{
+  background:var(--warm);padding:2rem 1.75rem;
+  transition:background .2s;cursor:pointer;
+}
+.show-card:hover{background:#fff}
+.show-time{
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:.8rem;font-family:var(--body);
+}
+.show-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--brown);margin-bottom:.6rem}
+.show-card p{font-size:.78rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem}
+.show-link{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);font-family:var(--body);text-decoration:none}
+.show-link:hover{color:var(--rust2)}
+
+.hosts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.host-card{text-align:center;padding:1.5rem 1rem}
+.host-avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 1rem;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.3rem;font-weight:700;
+  border:2px solid var(--border);
+}
+.host-card h4{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--brown);margin-bottom:.25rem}
+.host-card p{font-size:.7rem;color:var(--muted);line-height:1.7;font-style:italic}
+
+.story-section{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--border2);
+}
+.story-left{
+  background:var(--brown);padding:4rem 3rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.story-left h2{font-family:var(--serif);font-size:2.4rem;font-weight:400;color:var(--cream);margin-bottom:1.2rem;line-height:1.15}
+.story-left p{font-size:.82rem;color:rgba(245,240,232,.6);line-height:1.95;margin-bottom:1.5rem}
+blockquote{
+  border-left:2px solid var(--amber);padding-left:1.2rem;margin:1.5rem 0;
+  font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(245,240,232,.8);line-height:1.7;
+}
+.story-right{
+  background:var(--brown2);padding:4rem 3rem;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+}
+.story-right h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;font-style:italic;color:var(--cream);margin-bottom:1.5rem}
+.listen-options{display:flex;flex-direction:column;gap:.75rem;width:100%}
+.listen-opt{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.2rem;border:1px solid rgba(200,133,42,.2);border-radius:2px;
+  background:rgba(200,133,42,.05);cursor:pointer;transition:all .2s;
+}
+.listen-opt:hover{border-color:var(--amber);background:rgba(200,133,42,.1)}
+.listen-icon{font-size:1.1rem;width:28px;text-align:center}
+.listen-text{flex:1}
+.listen-title{font-size:.8rem;color:var(--cream);font-family:var(--body)}
+.listen-sub{font-size:.65rem;color:rgba(245,240,232,.4);font-family:var(--body)}
+.listen-arrow{color:var(--amber);font-size:.8rem}
+
+.newsletter{
+  padding:4rem 2.5rem;background:var(--amber);border-top:1px solid var(--border);
+  display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;
+}
+.newsletter h2{font-family:var(--serif);font-size:2rem;font-weight:400;color:var(--brown);margin-bottom:.5rem}
+.newsletter p{font-size:.8rem;color:var(--brown3);line-height:1.8}
+.subscribe-form{display:flex;gap:0}
+.subscribe-form input{
+  padding:.75rem 1.2rem;border:1.5px solid var(--brown3);border-right:none;
+  font-family:var(--body);font-size:.8rem;color:var(--brown);background:#fff;
+  border-radius:2px 0 0 2px;outline:none;width:220px;
+}
+.subscribe-form button{
+  background:var(--brown);color:var(--amber3);padding:.75rem 1.4rem;
+  border:none;font-family:var(--body);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;border-radius:0 2px 2px 0;transition:background .2s;
+}
+.subscribe-form button:hover{background:var(--rust)}
+
+footer{
+  background:var(--brown);padding:3rem 2.5rem 1.5rem;
+  border-top:1px solid rgba(200,133,42,.15);
+}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(200,133,42,.15)}
+.footer-brand p{font-size:.75rem;color:rgba(245,240,232,.4);line-height:1.9;margin-top:.75rem;font-style:italic}
+footer h5{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:.8rem;font-family:var(--body)}
+footer ul{list-style:none}
+footer li{margin-bottom:.4rem}
+footer a{color:rgba(245,240,232,.5);text-decoration:none;font-size:.75rem;transition:color .2s;font-family:var(--body)}
+footer a:hover{color:var(--amber3)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:.65rem;color:rgba(245,240,232,.3);font-family:var(--body)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-icon">♫</div>
+    Front Porch Radio
+  </div>
+  <ul>
+    <li><a href="#">Schedule</a></li>
+    <li><a href="#">Shows</a></li>
+    <li><a href="#">Hosts</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="live-badge"><div class="live-dot"></div>On Air Now · 24/7</div>
+</nav>
+
+<div class="tagline-band">
+  <div class="tagline-scroll">
+    <span class="tag-item">Americana</span>
+    <span class="tag-item">Folk</span>
+    <span class="tag-item">Blues</span>
+    <span class="tag-item">Soul</span>
+    <span class="tag-item">Independent</span>
+    <span class="tag-item">Listener-Supported</span>
+    <span class="tag-item">Commercial-Free</span>
+    <span class="tag-item">Americana</span>
+    <span class="tag-item">Folk</span>
+    <span class="tag-item">Blues</span>
+    <span class="tag-item">Soul</span>
+    <span class="tag-item">Independent</span>
+    <span class="tag-item">Listener-Supported</span>
+    <span class="tag-item">Commercial-Free</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Independent community radio</div>
+    <h1>Good music.<br><em>Good company.</em><br>Come sit a while.</h1>
+    <p class="hero-sub">Front Porch Radio is an independent community station spinning Americana, folk, blues, and soul — plus honest conversation, local stories, and late-night vinyl.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">♫ Listen Live</button>
+      <button class="btn-secondary">See what's on</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="vinyl"></div>
+    <div class="now-playing">
+      <div class="np-label">Now Playing</div>
+      <div class="np-song">Wagon Wheel</div>
+      <div class="np-artist">Old Crow Medicine Show</div>
+      <div class="waveform">
+        <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-eyebrow">Regular shows</span>
+    <div class="section-rule"></div>
+    <span style="font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--muted)">Pull up a chair for any of these</span>
+  </div>
+  <div class="shows-grid">
+    <div class="show-card">
+      <div class="show-time">Mon–Fri · 6:00 AM</div>
+      <h3>Sunrise Sessions</h3>
+      <p>Acoustic mornings, quiet coffee, and the kind of songs that wake you up gently.</p>
+      <a class="show-link" href="#">Listen →</a>
+    </div>
+    <div class="show-card">
+      <div class="show-time">Tue · 10:00 PM</div>
+      <h3>The Deep End</h3>
+      <p>Two hours of rare blues sides, field recordings, and whatever comes up from the crate.</p>
+      <a class="show-link" href="#">Listen →</a>
+    </div>
+    <div class="show-card">
+      <div class="show-time">Wed · 7:00 PM</div>
+      <h3>Kitchen Table</h3>
+      <p>Long conversations with songwriters, chefs, farmers, and neighbors worth listening to.</p>
+      <a class="show-link" href="#">Listen →</a>
+    </div>
+    <div class="show-card">
+      <div class="show-time">Fri · 5:00 PM</div>
+      <h3>Holler Hour</h3>
+      <p>Bluegrass, old-time, and Appalachian strings to kick the weekend off right.</p>
+      <a class="show-link" href="#">Listen →</a>
+    </div>
+    <div class="show-card">
+      <div class="show-time">Sat · 8:00 PM</div>
+      <h3>Soul Supper</h3>
+      <p>Memphis, Muscle Shoals, Philly — a full plate of 60s and 70s soul, served warm.</p>
+      <a class="show-link" href="#">Listen →</a>
+    </div>
+    <div class="show-card">
+      <div class="show-time">Sun · 9:00 AM</div>
+      <h3>Sunday Pews</h3>
+      <p>Gospel, spirituals, and sacred harmony — whatever your Sunday looks like.</p>
+      <a class="show-link" href="#">Listen →</a>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-eyebrow">The voices</span>
+    <div class="section-rule"></div>
+    <span style="font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--muted)">The folks on the other end of the mic</span>
+  </div>
+  <div class="hosts-grid">
+    <div class="host-card">
+      <div class="host-avatar" style="background:#fdf0e0;color:var(--amber)">MR</div>
+      <h4>Maggie Rhodes</h4>
+      <p>Host · Sunrise Sessions<br>Former touring banjo player</p>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar" style="background:#f0e8e0;color:var(--brown3)">JT</div>
+      <h4>Jesse Tanner</h4>
+      <p>Host · The Deep End<br>Has more 78s than sense</p>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar" style="background:#f5ede0;color:var(--rust)">DL</div>
+      <h4>Della Lark</h4>
+      <p>Host · Kitchen Table<br>Asks the questions worth asking</p>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar" style="background:#ede8e0;color:var(--muted)">WH</div>
+      <h4>Wendell Hayes</h4>
+      <p>Music Director<br>Thirty years crate-digging</p>
+    </div>
+  </div>
+</div>
+
+<div class="story-section">
+  <div class="story-left">
+    <div class="eyebrow" style="color:var(--amber3)">Our story</div>
+    <h2>Started on a porch.<br>Still sounds<br><em>like one.</em></h2>
+    <p>Front Porch Radio began in a back-shed studio with two mics, a turntable, and a stubborn belief that the radio — real radio, with a real person on the other end — still matters.</p>
+    <blockquote>"Community radio is a front porch. You don't need an invitation — just pull up a chair."</blockquote>
+    <p style="font-size:.75rem;color:rgba(245,240,232,.4)">Independent · Listener-supported · Commercial-free</p>
+  </div>
+  <div class="story-right">
+    <h3>Listen anywhere</h3>
+    <div class="listen-options">
+      <div class="listen-opt">
+        <div class="listen-icon">🌐</div>
+        <div class="listen-text"><div class="listen-title">Web Player</div><div class="listen-sub">Right here, right now</div></div>
+        <div class="listen-arrow">→</div>
+      </div>
+      <div class="listen-opt">
+        <div class="listen-icon">📱</div>
+        <div class="listen-text"><div class="listen-title">iOS & Android</div><div class="listen-sub">Free app</div></div>
+        <div class="listen-arrow">→</div>
+      </div>
+      <div class="listen-opt">
+        <div class="listen-icon">🔊</div>
+        <div class="listen-text"><div class="listen-title">Smart Speaker</div><div class="listen-sub">"Play Front Porch Radio"</div></div>
+        <div class="listen-arrow">→</div>
+      </div>
+      <div class="listen-opt">
+        <div class="listen-icon">🎙</div>
+        <div class="listen-text"><div class="listen-title">Podcasts</div><div class="listen-sub">Shows on demand</div></div>
+        <div class="listen-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="newsletter">
+  <div>
+    <h2>The Front Porch Letter</h2>
+    <p>A weekly note from the porch — new shows, new songs, new stories. Every Friday morning.</p>
+  </div>
+  <div class="subscribe-form">
+    <input type="email" placeholder="your@email.com" />
+    <button>Subscribe</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo" style="color:var(--amber3)">
+        <div class="logo-icon" style="border-color:var(--amber);color:var(--amber)">♫</div>
+        Front Porch Radio
+      </div>
+      <p>Independent community radio.<br>Listener-supported. Commercial-free.</p>
+    </div>
+    <div>
+      <h5>Listen</h5>
+      <ul>
+        <li><a href="#">Web player</a></li>
+        <li><a href="#">Mobile apps</a></li>
+        <li><a href="#">Smart speakers</a></li>
+        <li><a href="#">Podcasts</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>The Station</h5>
+      <ul>
+        <li><a href="#">Shows</a></li>
+        <li><a href="#">Hosts</a></li>
+        <li><a href="#">Schedule</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Become a member</a></li>
+        <li><a href="#">One-time gift</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Front Porch Radio — All rights reserved</span>
+    <span style="font-style:italic">Built with care on a slow internet connection.</span>
+  </div>
+</footer>
+
+</body>
+</html>
